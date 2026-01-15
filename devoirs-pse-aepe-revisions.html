@@ -1,0 +1,1080 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <title>CAP AEPE – Devoir PSE V3 Professionnel</title>
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card:#0f1a31;
+      --text:#e8eefc;
+      --muted:#a9b7da;
+      --line:rgba(255,255,255,.10);
+      --accent:#5dd6ff;
+      --accent2:#9bffb5;
+      --warn:#ffd166;
+      --danger:#ff5d7a;
+      --ok:#36f097;
+      --shadow: 0 18px 60px rgba(0,0,0,.35);
+      --radius: 18px;
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg:#f6f8ff;
+        --card:#ffffff;
+        --text:#0b1220;
+        --muted:#3c4a6b;
+        --line:rgba(10,20,40,.10);
+        --shadow: 0 18px 60px rgba(10,20,40,.12);
+      }
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--font);
+      background:
+        radial-gradient(1200px 800px at 10% 10%, rgba(93,214,255,.18), transparent 60%),
+        radial-gradient(900px 600px at 90% 15%, rgba(155,255,181,.14), transparent 55%),
+        radial-gradient(1000px 700px at 30% 90%, rgba(255,209,102,.10), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing: antialiased;
+      font-size:16px;
+      line-height:1.45;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .container{max-width:1200px; margin:0 auto; padding:16px 14px 84px}
+    .hero{
+      position:relative;
+      border:1px solid var(--line);
+      border-radius:22px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      background: linear-gradient(135deg, rgba(93,214,255,.12), rgba(155,255,181,.10) 55%, rgba(255,209,102,.08));
+    }
+    .heroTop{
+      display:flex;
+      gap:14px;
+      align-items:stretch;
+      flex-wrap:wrap;
+      padding:16px;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border-bottom:1px solid var(--line);
+    }
+    .heroLogo{display:flex; align-items:center; gap:12px; flex: 1 1 520px; min-width: 320px}
+    .logoImg{height:42px; width:auto; display:block; filter: drop-shadow(0 8px 18px rgba(0,0,0,.25))}
+    .heroTitle h1{margin:0; font-size:20px; letter-spacing:.2px}
+    .heroTitle p{margin:6px 0 0; color:var(--muted); font-size:13px}
+    .heroMeta{flex: 0 0 340px; min-width: 280px; display:flex; flex-direction:column; justify-content:space-between; gap:10px}
+    .chips{display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end}
+    .chip{display:inline-flex; align-items:center; gap:8px; padding:8px 10px; border-radius:999px; border:1px solid var(--line); background: rgba(255,255,255,.04); font-size:12px; color:var(--muted); user-select:none; white-space:nowrap}
+    .chip b{color:var(--text)}
+    .heroActions{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end}
+    .btn{appearance:none; border:1px solid var(--line); background: rgba(255,255,255,.06); color: var(--text); padding: 10px 12px; border-radius: 14px; cursor:pointer; font-weight:800; font-size: 13px; display:inline-flex; align-items:center; gap:10px; user-select:none; transition: transform .05s ease, background .2s ease}
+    .btn:active{transform: translateY(1px)}
+    .btn.primary{background: rgba(93,214,255,.16); border-color: rgba(93,214,255,.35)}
+    .btn.ok{background: rgba(54,240,151,.14); border-color: rgba(54,240,151,.35)}
+    .btn.warn{background: rgba(255,209,102,.14); border-color: rgba(255,209,102,.35)}
+    .btn.danger{background: rgba(255,93,122,.12); border-color: rgba(255,93,122,.35)}
+    .btn[disabled]{opacity:.55; cursor:not-allowed}
+    .heroNav{padding: 10px 16px 14px; display:flex; gap:10px; flex-wrap:wrap}
+    .tab{border:1px solid var(--line); background: rgba(0,0,0,.12); padding: 8px 12px; border-radius: 999px; font-weight:800; font-size: 12px; color: var(--muted); cursor:pointer; transition: all .2s ease}
+    .tab.active{color: var(--text); border-color: rgba(93,214,255,.35); background: rgba(93,214,255,.10)}
+    .layout{margin-top: 16px; display:grid; grid-template-columns: 1.25fr .75fr; gap: 16px; align-items:start}
+    @media (max-width: 980px){ .layout{grid-template-columns: 1fr} }
+    .card{border:1px solid var(--line); background: rgba(255,255,255,.03); border-radius: var(--radius); box-shadow: var(--shadow); overflow:hidden}
+    .cardHeader{padding: 14px 16px 12px; border-bottom: 1px solid var(--line); background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02))}
+    .cardHeader h2{margin:0; font-size:15px; letter-spacing:.2px}
+    .cardHeader p{margin:6px 0 0; color:var(--muted); font-size:13px}
+    .cardBody{padding: 16px}
+    .row{display:grid; grid-template-columns: 1fr 1fr; gap: 10px}
+    @media (max-width: 560px){ .row{grid-template-columns: 1fr} }
+    label{display:block; font-size:12px; color:var(--muted); margin-bottom: 6px}
+    input[type="text"], input[type="email"], input[type="date"], textarea, select{width:100%; padding: 12px 12px; border-radius: 12px; border: 1px solid var(--line); background: rgba(0,0,0,.15); color: var(--text); outline:none; font-size:16px}
+    @media (prefers-color-scheme: light){ input[type="text"], input[type="email"], input[type="date"], textarea, select{background: rgba(10,20,40,.04)} }
+    textarea{min-height: 108px; resize: vertical; font-family: var(--font)}
+    .pill{font-size:12px; padding:6px 10px; border-radius:999px; border:1px solid var(--line); background: rgba(255,255,255,.04); color:var(--muted)}
+    .inline{display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-top: 10px}
+    .divider{height:1px; background: var(--line); margin: 14px 0}
+    .hint{margin:10px 0 0; font-size:12px; color: var(--muted)}
+    .progressWrap{display:flex; align-items:center; justify-content:space-between; gap: 10px; margin-top: 12px}
+    .progress{height:10px; border-radius:999px; background: rgba(255,255,255,.06); border:1px solid var(--line); overflow:hidden; flex:1}
+    .bar{height:100%; width:0%; background: linear-gradient(90deg, rgba(93,214,255,.95), rgba(155,255,181,.95)); border-radius:999px; transition: width .25s ease}
+    details{border-top:1px solid var(--line); padding: 14px 0}
+    summary{cursor:pointer; list-style:none; display:flex; align-items:flex-start; justify-content:space-between; gap: 12px}
+    summary::-webkit-details-marker{display:none}
+    .qTitle{display:flex; gap:10px; align-items:flex-start; min-width:0}
+    .qNum{flex:0 0 auto; width:34px; height:34px; border-radius: 12px; display:grid; place-items:center; font-weight:900; background: rgba(93,214,255,.14); border: 1px solid rgba(93,214,255,.26)}
+    .qMeta{min-width:0}
+    .qMeta .t{font-weight:900; font-size:14px; margin:0}
+    .qMeta .s{margin:4px 0 0; color:var(--muted); font-size:12px}
+    .qRight{display:flex; gap:8px; align-items:center; flex:0 0 auto}
+    .tag{font-size:12px; padding:6px 10px; border-radius:999px; border:1px solid var(--line); background: rgba(255,255,255,.04); color: var(--muted)}
+    .tag.kpi{border-color: rgba(155,255,181,.35); background: rgba(155,255,181,.10)}
+    .tag.risk{border-color: rgba(255,93,122,.35); background: rgba(255,93,122,.08)}
+    .tag.doc{border-color: rgba(255,209,102,.35); background: rgba(255,209,102,.10)}
+    .tag.pro{border-color: rgba(93,214,255,.35); background: rgba(93,214,255,.10)}
+    .qBody{margin-top: 12px; padding-left: 44px}
+    .scenario{border:1px solid var(--line); background: rgba(255,255,255,.03); border-radius: 14px; padding: 12px; margin: 10px 0 12px}
+    .scenario .h{margin:0; font-size:12px; letter-spacing:.3px; color: var(--muted); text-transform: uppercase}
+    .scenario .p{margin:8px 0 0; font-size:14px}
+    .choices{display:grid; gap: 8px; margin-top: 10px}
+    .choice{border:1px solid var(--line); background: rgba(255,255,255,.03); border-radius: 14px; padding: 10px 12px; display:flex; align-items:flex-start; gap:10px; cursor:pointer; transition: background .2s ease, border-color .2s ease}
+    .choice:hover{background: rgba(255,255,255,.06); border-color: rgba(93,214,255,.25)}
+    .choice input{margin-top:3px; transform: scale(1.1); cursor:pointer}
+    .choice .ct{display:flex; flex-direction:column; gap:2px; flex:1}
+    .choice .ct .a{font-weight:800; font-size:14px}
+    .help{font-size:12px; color:var(--muted); margin-top: 10px; padding-left: 44px}
+    .results{display:none; margin-top: 10px}
+    .results.show{display:block}
+    .panel{border:1px solid var(--line); border-radius: var(--radius); background: rgba(255,255,255,.03); padding: 14px; margin-top: 12px}
+    .scoreBig{display:flex; align-items:flex-end; justify-content:space-between; gap: 12px; flex-wrap:wrap}
+    .scoreBig .n{font-size:40px; font-weight:950; letter-spacing:-.8px; margin:0}
+    .scoreBig .n span{font-size:16px; color: var(--muted); font-weight:900}
+    .scoreBig .meta{margin:0; color: var(--muted); font-size:13px}
+    .kpiRow{display:grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 12px}
+    @media (max-width: 720px){ .kpiRow{grid-template-columns: 1fr} }
+    .kpi{border:1px solid var(--line); border-radius: 14px; background: rgba(255,255,255,.03); padding: 12px}
+    .kpi .k{font-size:12px; color: var(--muted); margin:0}
+    .kpi .v{margin:6px 0 0; font-weight:950; font-size:18px}
+    .corrList{margin-top: 10px; display:grid; gap: 10px}
+    .corrItem{border:1px solid var(--line); border-radius: 14px; background: rgba(255,255,255,.03); padding: 12px}
+    .corrItem .topline{display:flex; align-items:center; justify-content:space-between; gap: 12px; flex-wrap:wrap}
+    .chipRes{font-size:12px; padding:6px 10px; border-radius:999px; font-weight:950; border:1px solid var(--line); background: rgba(255,255,255,.04)}
+    .chipRes.ok{border-color: rgba(54,240,151,.40); background: rgba(54,240,151,.12)}
+    .chipRes.no{border-color: rgba(255,93,122,.40); background: rgba(255,93,122,.10)}
+    .corrItem h4{margin: 10px 0 6px; font-size: 14px}
+    .corrItem p{margin:0; color: var(--muted); font-size: 13px}
+    .sticky{position: sticky; top: 14px}
+    @media (max-width: 980px){ .sticky{position: static} }
+    .infobox{border:1px solid rgba(93,214,255,.35); background: rgba(93,214,255,.08); border-radius: 16px; padding: 18px; margin: 18px 0}
+    .infobox h3{margin:0 0 12px; font-size:15px; color:var(--accent); display:flex; align-items:center; gap:10px}
+    .infobox ul{margin:8px 0 0 20px; color:var(--text); line-height:1.7}
+    .infobox ul li{margin:6px 0}
+    .exemple{border:1px solid rgba(155,255,181,.35); background: rgba(155,255,181,.08); border-radius: 14px; padding: 14px; margin-top: 14px}
+    .exemple h4{margin:0 0 8px; font-size:13px; color:var(--accent2); text-transform: uppercase; letter-spacing: .5px}
+    .exemple p{margin:6px 0; font-size:13px}
+    .tagLegend{display:flex; gap:12px; flex-wrap:wrap; margin:14px 0; padding:14px; border:1px solid var(--line); border-radius: 12px; background: rgba(255,255,255,.02)}
+    .tagLegend > div{display:flex; align-items:center; gap:8px}
+    .visualImg{width:100%; height:auto; border-radius:12px; margin:10px 0; border:1px solid var(--line); box-shadow: 0 8px 24px rgba(0,0,0,.2)}
+    .imgCaption{font-size:11px; color:var(--muted); text-align:center; margin:-6px 0 10px; font-style:italic}
+    .foot{margin-top: 18px; color: var(--muted); font-size: 12px}
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header class="hero">
+      <div class="heroTop">
+        <div class="heroLogo">
+          <svg class="logoImg" width="180" height="42" viewBox="0 0 180 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="180" height="42" rx="8" fill="#5dd6ff" fill-opacity="0.15"/>
+            <text x="12" y="28" fill="currentColor" font-family="system-ui" font-weight="900" font-size="18">GIP-FIPAN</text>
+          </svg>
+          <div class="heroTitle">
+            <h1>CAP AEPE – DEVOIR PSE V3</h1>
+            <p>Bloc 1 – Prévention Santé Environnement. Évaluation professionnalisante.</p>
+          </div>
+        </div>
+
+        <div class="heroMeta">
+          <div class="chips">
+            <div class="chip"><b>Barème</b>&nbsp;/20</div>
+            <div class="chip"><b>Format</b>&nbsp;interactif</div>
+            <div class="chip"><b>Sortie</b>&nbsp;e-mail</div>
+          </div>
+          <div class="heroActions">
+            <button class="btn primary" id="btnGoConsignes">📋 Consignes</button>
+            <button class="btn" id="btnGoQuestions">📝 Questions</button>
+            <button class="btn ok" id="btnGoResults" disabled>✅ Résultats</button>
+          </div>
+        </div>
+      </div>
+
+      <nav class="heroNav">
+        <button class="tab active" data-filter="all">Tout</button>
+        <button class="tab" data-filter="sst">Gestes & secours</button>
+        <button class="tab" data-filter="infectieux">Hygiène / infectieux</button>
+        <button class="tab" data-filter="ppms">Incendie & PPMS</button>
+        <button class="tab" data-filter="tms">TMS / ergonomie</button>
+        <button class="tab" data-filter="cadre">Cadre pro</button>
+      </nav>
+    </header>
+
+    <!-- CONSIGNES -->
+    <section class="card" id="sectionConsignes" style="margin-top:16px;">
+      <div class="cardHeader">
+        <h2>📋 Consignes et objectifs du devoir</h2>
+        <p>Lis attentivement avant de commencer. Ce devoir évalue ta capacité à analyser des situations professionnelles réelles.</p>
+      </div>
+      <div class="cardBody">
+        <div class="infobox">
+          <h3>🎯 Objectif général</h3>
+          <p>Démontrer que tu sais :</p>
+          <ul>
+            <li><strong>Observer</strong> : repérer les faits, distinguer observation et interprétation</li>
+            <li><strong>Analyser</strong> : identifier les causes (matériel, organisation, humain), mobiliser tes connaissances PSE</li>
+            <li><strong>Agir</strong> : proposer des mesures de prévention hiérarchisées, tracer, communiquer</li>
+          </ul>
+        </div>
+
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='200' viewBox='0 0 800 200'%3E%3Crect fill='%230f1a31' width='800' height='200'/%3E%3Cg fill='none' stroke='%235dd6ff' stroke-width='2'%3E%3Ccircle cx='150' cy='100' r='60' opacity='0.3'/%3E%3Cpath d='M150 60 L150 100 L180 80' stroke-linecap='round'/%3E%3Ctext x='150' y='170' fill='%23a9b7da' font-family='system-ui' font-size='14' text-anchor='middle'%3EOBSERVER%3C/text%3E%3C/g%3E%3Cg fill='none' stroke='%239bffb5' stroke-width='2'%3E%3Ccircle cx='400' cy='100' r='60' opacity='0.3'/%3E%3Cpath d='M370 100 L400 70 L430 100 L400 130 Z' stroke-linejoin='round'/%3E%3Ctext x='400' y='170' fill='%23a9b7da' font-family='system-ui' font-size='14' text-anchor='middle'%3EANALYSER%3C/text%3E%3C/g%3E%3Cg fill='none' stroke='%23ffd166' stroke-width='2'%3E%3Ccircle cx='650' cy='100' r='60' opacity='0.3'/%3E%3Cpath d='M630 110 L645 95 L680 110' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ctext x='650' y='170' fill='%23a9b7da' font-family='system-ui' font-size='14' text-anchor='middle'%3EAGIR%3C/text%3E%3C/g%3E%3Cpath d='M210 100 L340 100' stroke='%23a9b7da' stroke-width='2' stroke-dasharray='5,5' marker-end='url(%23arrow)'/%3E%3Cpath d='M460 100 L590 100' stroke='%23a9b7da' stroke-width='2' stroke-dasharray='5,5' marker-end='url(%23arrow)'/%3E%3Cdefs%3E%3Cmarker id='arrow' markerWidth='10' markerHeight='10' refX='5' refY='3' orient='auto' markerUnits='strokeWidth'%3E%3Cpath d='M0,0 L0,6 L9,3 z' fill='%23a9b7da'/%3E%3C/marker%3E%3C/defs%3E%3C/svg%3E" alt="Démarche PSE" class="visualImg" />
+        <p class="imgCaption">Démarche professionnelle PSE : Observer les faits → Analyser les causes → Agir avec méthode</p>
+
+        <div class="infobox">
+          <h3>📝 Types de questions</h3>
+          <ul>
+            <li><strong>QCU (choix unique)</strong> : Une seule réponse juste</li>
+            <li><strong>QCM (choix multiple)</strong> : Plusieurs réponses attendues</li>
+            <li><strong>Réponses courtes</strong> : 4 à 8 lignes, posture professionnelle</li>
+          </ul>
+        </div>
+
+        <div class="infobox">
+          <h3>✅ Ce qui est valorisé</h3>
+          <ul>
+            <li>Vocabulaire professionnel (DUERP, EPI, prévention primaire, traçabilité)</li>
+            <li>Logique de prévention : agir à la source > organiser > protéger > informer</li>
+            <li>Faits observables (éviter jugements de valeur)</li>
+            <li>Mesures concrètes, réalistes, applicables</li>
+          </ul>
+        </div>
+
+        <div class="tagLegend">
+          <strong style="width:100%; font-size:13px; margin-bottom:6px;">🏷️ Légende des tags</strong>
+          <div><span class="tag risk">RISK</span> <span style="font-size:12px; color:var(--muted);">Analyse du risque</span></div>
+          <div><span class="tag pro">PRO</span> <span style="font-size:12px; color:var(--muted);">Posture métier</span></div>
+          <div><span class="tag kpi">KPI</span> <span style="font-size:12px; color:var(--muted);">Indicateur de maîtrise</span></div>
+          <div><span class="tag doc">DOC</span> <span style="font-size:12px; color:var(--muted);">Référence documentaire</span></div>
+        </div>
+
+        <div class="exemple">
+          <h4>💡 Exemple de réponse attendue</h4>
+          <p><strong>Question (fictive) :</strong> Un enfant tombe en courant. Décris la conduite à tenir.</p>
+          <p style="font-style:italic; background:rgba(0,0,0,.15); padding:10px; border-radius:8px; margin-top:6px;">
+            J'évalue immédiatement l'état de l'enfant (conscience, respiration, plaie). Si besoin, j'applique les gestes de premiers secours et j'alerte (15 ou équipe). Je sécurise la zone. Je trace l'incident dans le registre (heure, circonstances, actions menées). Ensuite, j'analyse les causes : sol glissant ? circulation encombrée ? Je propose des mesures (organisation, aménagement) et je communique à l'équipe.
+          </p>
+          <p style="margin-top:8px; font-size:12px; color:var(--muted);">
+            ✅ Vocabulaire métier • Structure claire • Mesures concrètes • Traçabilité • Prévention
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="layout">
+      <!-- CARTOUCHE -->
+      <section class="card" id="sectionCartouche">
+        <div class="cardHeader">
+          <h2>Cartouche candidat (obligatoire)</h2>
+          <p>Traçabilité et correction sécurisée.</p>
+        </div>
+        <div class="cardBody">
+          <div class="row">
+            <div><label for="nom">Nom</label><input id="nom" type="text" placeholder="DURAND" /></div>
+            <div><label for="prenom">Prénom</label><input id="prenom" type="text" placeholder="Léa" /></div>
+            <div><label for="classe">Classe / Groupe</label><input id="classe" type="text" placeholder="CAP AEPE 1" /></div>
+            <div><label for="date">Date</label><input id="date" type="date" /></div>
+            <div><label for="emailFormateur">Email formateur</label><input id="emailFormateur" type="email" value="benoit.deflandre@ac-nice.fr" /></div>
+            <div>
+              <label for="mode">Mode</label>
+              <select id="mode">
+                <option value="devoir">Devoir (feedback synthétique)</option>
+                <option value="entrainement">Entraînement (feedback détaillé)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="inline">
+            <button class="btn primary" id="btnLock">🔒 Verrouiller</button>
+            <button class="btn" id="btnUnlock" disabled>🔓 Déverrouiller</button>
+            <div class="pill" id="lockState">Statut : <b>non verrouillé</b></div>
+          </div>
+
+          <div class="progressWrap">
+            <div class="progress"><div class="bar" id="bar"></div></div>
+            <div class="pill" id="progressText">Progression : <b>0%</b></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PILOTAGE -->
+      <aside class="card sticky" id="sectionPilotage">
+        <div class="cardHeader">
+          <h2>Pilotage</h2>
+          <p>Correction et synthèse.</p>
+        </div>
+        <div class="cardBody">
+          <button class="btn ok" id="btnCorrect" disabled style="width:100%; justify-content:center;">✅ Corriger</button>
+
+          <div class="inline" style="margin-top:10px;">
+            <button class="btn" id="btnCollapse">🧩 Replier</button>
+            <button class="btn danger" id="btnReset">🧨 Réinitialiser</button>
+          </div>
+
+          <div class="results" id="results">
+            <div class="panel">
+              <div class="scoreBig">
+                <p class="n" id="scoreBig">— <span>/20</span></p>
+                <p class="meta" id="scoreMeta">—</p>
+              </div>
+
+              <div class="kpiRow">
+                <div class="kpi"><p class="k">Questions validées</p><p class="v" id="kpiOk">—</p></div>
+                <div class="kpi"><p class="k">Points obtenus</p><p class="v" id="kpiPts">—</p></div>
+                <div class="kpi"><p class="k">Taux réussite</p><p class="v" id="kpiRate">—</p></div>
+              </div>
+
+              <div class="divider"></div>
+
+              <button class="btn primary" id="btnMail" style="width:100%; justify-content:center;">✉️ Générer mail</button>
+              <div class="inline" style="margin-top:10px;">
+                <button class="btn" id="btnCopy">📋 Copier</button>
+                <div class="pill" id="copyState">Copie : <b>—</b></div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <h3 style="margin:0 0 10px; font-size:15px;">Synthèse de correction</h3>
+              <div class="corrList" id="corrList"></div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- QUESTIONS -->
+    <section class="card" id="sectionQuestions" style="margin-top:16px;">
+      <div class="cardHeader">
+        <h2>Questions – situations professionnelles AEPE</h2>
+        <p>Analyse de contextes réels en structure petite enfance.</p>
+      </div>
+      <div class="cardBody" id="questions"></div>
+    </section>
+  </div>
+
+<script>
+const QUESTIONS = [
+  {
+    id: "q1", type: "mcq", points: 1, theme:"cadre", tags:["pro","kpi"],
+    title: "Document Unique : pour quoi faire sur le terrain ?",
+    subtitle: "Logique prévention, pas conformité administrative.",
+    scenario: "Tu es en stage dans une crèche collective (15 enfants, 4 pros). La directrice te montre le DUERP actualisé. Elle te demande en quoi ce document aide l'équipe au quotidien.",
+    prompt: "Quelle proposition reflète le mieux l'usage opérationnel du DUERP ?",
+    choices: [
+      { key:"A", a:"Il remplace le règlement intérieur et définit les sanctions" },
+      { key:"B", a:"Il identifie les risques, les évalue, et planifie des actions de prévention hiérarchisées" },
+      { key:"C", a:"Il liste uniquement les produits d'entretien et leur dangerosité" },
+      { key:"D", a:"Il sert uniquement lors des contrôles de l'inspection du travail" },
+    ],
+    answer:["B"],
+    rationale:"Le DUERP est un outil de pilotage prévention : repérage → évaluation → actions → suivi. Il sert au quotidien pour prioriser les mesures.",
+    image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='200' viewBox='0 0 600 200'%3E%3Crect fill='%230f1a31' width='600' height='200'/%3E%3Crect x='50' y='40' width='150' height='120' rx='8' fill='%235dd6ff' fill-opacity='0.1' stroke='%235dd6ff' stroke-width='2'/%3E%3Ctext x='125' y='70' fill='%23e8eefc' font-family='system-ui' font-size='14' font-weight='700' text-anchor='middle'%3EDUERP%3C/text%3E%3Ctext x='125' y='95' fill='%23a9b7da' font-family='system-ui' font-size='11' text-anchor='middle'%3EIdentifier%3C/text%3E%3Ctext x='125' y='115' fill='%23a9b7da' font-family='system-ui' font-size='11' text-anchor='middle'%3EÉvaluer%3C/text%3E%3Ctext x='125' y='135' fill='%23a9b7da' font-family='system-ui' font-size='11' text-anchor='middle'%3EPlanifier%3C/text%3E%3Cpath d='M200 100 L350 100' stroke='%23ffd166' stroke-width='2' marker-end='url(%23arrow)'/%3E%3Crect x='350' y='60' width='200' height='80' rx='8' fill='%239bffb5' fill-opacity='0.1' stroke='%239bffb5' stroke-width='2'/%3E%3Ctext x='450' y='95' fill='%23e8eefc' font-family='system-ui' font-size='12' text-anchor='middle'%3EACTIONS%3C/text%3E%3Ctext x='450' y='115' fill='%23a9b7da' font-family='system-ui' font-size='11' text-anchor='middle'%3EPRÉVENTION%3C/text%3E%3Cdefs%3E%3Cmarker id='arrow' markerWidth='10' markerHeight='10' refX='5' refY='3' orient='auto'%3E%3Cpath d='M0,0 L0,6 L9,3 z' fill='%23ffd166'/%3E%3C/marker%3E%3C/defs%3E%3C/svg%3E"
+  },
+  {
+    id:"q2", type:"msq", points: 1.5, theme:"cadre", tags:["risk","doc"],
+    title:"Quasi-accident : capitaliser pour progresser",
+    subtitle:"Traçabilité et amélioration continue.",
+    scenario:"14h30, salle de jeux (section 18–36 mois). Une auxiliaire glisse sur une flaque d'eau près du point d'eau (activité peinture terminée). Pas de chute, juste un déséquilibre. L'équipe termine sans en reparler.",
+    prompt:"Quelles actions correspondent à une démarche professionnelle ? (plusieurs réponses)",
+    choices:[
+      {key:"A", a:"Organiser un retour d'expérience : faits, causes possibles, mesures correctives"},
+      {key:"B", a:"Ne rien écrire puisqu'il n'y a pas eu de blessure"},
+      {key:"C", a:"Ajuster l'organisation : séchage immédiat, séparation des zones, signalisation"},
+      {key:"D", a:"Blâmer l'enfant qui a renversé le pot d'eau"}
+    ],
+    answer:["A","C"],
+    rationale:"La prévention repose sur la traçabilité des incidents (même sans blessure) et l'action sur l'environnement. La culture sécurité évite la sous-déclaration.",
+    image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='200' viewBox='0 0 600 200'%3E%3Crect fill='%230f1a31' width='600' height='200'/%3E%3Ccircle cx='150' cy='100' r='50' fill='%23ff5d7a' fill-opacity='0.1' stroke='%23ff5d7a' stroke-width='2'/%3E%3Cpath d='M130 100 L150 80 L170 100' stroke='%23ff5d7a' stroke-width='3' stroke-linecap='round' fill='none'/%3E%3Ctext x='150' y='165' fill='%23a9b7da' font-family='system-ui' font-size='12' text-anchor='middle'%3EINCIDENT%3C/text%3E%3Cpath d='M200 100 L280 100' stroke='%23ffd166' stroke-width='2' marker-end='url(%23arrow2)'/%3E%3Crect x='280' y='70' width='120' height='60' rx='8' fill='%235dd6ff' fill-opacity='0.1' stroke='%235dd6ff' stroke-width='2'/%3E%3Ctext x='340' y='95' fill='%23e8eefc' font-family='system-ui' font-size='11' text-anchor='middle'%3ETRACER%3C/text%3E%3Ctext x='340' y='115' fill='%23a9b7da' font-family='system-ui' font-size='10' text-anchor='middle'%3E+ analyser%3C/text%3E%3Cpath d='M400 100 L480 100' stroke='%23ffd166' stroke-width='2' marker-end='url(%23arrow2)'/%3E%3Crect x='480' y='70' width='100' height='60' rx='8' fill='%239bffb5' fill-opacity='0.1' stroke='%239bffb5' stroke-width='2'/%3E%3Ctext x='530' y='105' fill='%23e8eefc' font-family='system-ui' font-size='11' text-anchor='middle'%3EACTION%3C/text%3E%3Cdefs%3E%3Cmarker id='arrow2' markerWidth='10' markerHeight='10' refX='5' refY='3' orient='auto'%3E%3Cpath d='M0,0 L0,6 L9,3 z' fill='%23ffd166'/%3E%3C/marker%3E%3C/defs%3E%3C/svg%3E"
+  },
+  {
+    id:"q3", type:"mcq", points: 1, theme:"infectieux", tags:["risk","pro"],
+    title:"Hygiène des mains : quand friction, quand lavage ?",
+    subtitle:"Protocole simple, efficacité maximale.",
+    scenario:"9h15, crèche collective. Tu viens d'aider un enfant aux toilettes (change couche). Tes mains sont visiblement propres. Tu dois maintenant préparer les biberons.",
+    prompt:"Quelle affirmation est correcte ?",
+    choices:[
+      {key:"A", a:"Les gants remplacent l'hygiène des mains"},
+      {key:"B", a:"La friction hydro-alcoolique est possible sur mains visiblement propres, sauf après contact avec liquides biologiques"},
+      {key:"C", a:"Le lavage est inutile si j'ai porté des gants pendant le change"},
+      {key:"D", a:"Je me lave les mains seulement en fin de matinée"}
+    ],
+    answer:["B"],
+    rationale:"Règle PSE : friction SHA si mains visiblement propres et sèches (hors soins invasifs). Lavage si mains sales ou après contact liquides biologiques. Les gants ne remplacent jamais l'hygiène des mains.",
+    image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='200' viewBox='0 0 600 200'%3E%3Crect fill='%230f1a31' width='600' height='200'/%3E%3Cg%3E%3Crect x='50' y='50' width='200' height='100' rx='8' fill='%235dd6ff' fill-opacity='0.1' stroke='%235dd6ff' stroke-width='2'/%3E%3Ctext x='150' y='80' fill='%23e8eefc' font-family='system-ui' font-size='13' font-weight='700' text-anchor='middle'%3ELAVAGE%3C/text%3E%3Ctext x='150' y='100' fill='%23a9b7da' font-family='system-ui' font-size='10' text-anchor='middle'%3EMains sales%3C/text%3E%3Ctext x='150' y='115' fill='%23a9b7da' font-family='system-ui' font-size='10' text-anchor='middle'%3ELiquides biologiques%3C/text%3E%3Ctext x='150' y='130' fill='%23a9b7da' font-family='system-ui' font-size='10' text-anchor='middle'%3EAvant repas%3C/text%3E%3C/g%3E%3Cg%3E%3Crect x='350' y='50' width='200' height='100' rx='8' fill='%239bffb5' fill-opacity='0.1' stroke='%239bffb5' stroke-width='2'/%3E%3Ctext x='450' y='80' fill='%23e8eefc' font-family='system-ui' font-size='13' font-weight='700' text-anchor='middle'%3EFRICTION SHA%3C/text%3E%3Ctext x='450' y='100' fill='%23a9b7da' font-family='system-ui' font-size='10' text-anchor='middle'%3EMains propres%3C/text%3E%3Ctext x='450' y='115' fill='%23a9b7da' font-family='system-ui' font-size='10' text-anchor='middle'%3EEntre 2 gestes%3C/text%3E%3Ctext x='450' y='130' fill='%23a9b7da' font-family='system-ui' font-size='10' text-anchor='middle'%3ERapide%3C/text%3E%3C/g%3E%3C/svg%3E"
+  },
+  {
+    id:"q4", type:"short", points: 1.5, theme:"infectieux", tags:["pro","kpi"],
+    title:"Port de gants : adapter la protection au risque réel",
+    subtitle:"EPI pertinent, pas systématique.",
+    scenario:"10h, MAM (maison d'assistantes maternelles). Tu enchaines : change d'un enfant (gastro-entérite), puis préparation d'une activité pâte à modeler avec 3 autres enfants.",
+    prompt:"Rédige une réponse structurée (4–6 lignes) : cite 2 situations où le port de gants est justifié + 1 situation où il ne l'est pas, et explique pourquoi.",
+    answerShort:{
+      mustIncludeAny:[
+        ["sang","liquide biologique","vomissement","selles","urine","plaie","exsudat"],
+        ["peau lésée","coupure","lésion","dermatite","eczéma"],
+        ["pâte","modeler","jeux","activité","non justifié"]
+      ],
+      avoid:["toujours","tout le temps","jamais"],
+      minWords: 30
+    },
+    rationale:"Attendu : EPI adapté au risque (liquides biologiques, peau lésée du professionnel). Les gants ne remplacent jamais l'hygiène des mains. Usage raisonné = efficacité + économie."
+  },
+  {
+    id:"q5", type:"mcq", points: 1, theme:"sst", tags:["pro","risk"],
+    title:"Accident d'exposition au sang (AES) : conduite immédiate",
+    subtitle:"Procédure post-exposition = urgence.",
+    scenario:"11h30, micro-crèche. Pendant un soin (désinfection plaie au genou), projection de sang dans ton œil gauche.",
+    prompt:"Quelle est la conduite à tenir en premier ?",
+    choices:[
+      {key:"A", a:"Attendre la fin du service pour consulter"},
+      {key:"B", a:"Rincer immédiatement et abondamment à l'eau (15 min minimum), alerter le responsable, tracer l'incident, suivre la procédure AES"},
+      {key:"C", a:"Mettre du gel hydroalcoolique directement dans l'œil"},
+      {key:"D", a:"Se frotter l'œil pour évacuer le liquide"}
+    ],
+    answer:["B"],
+    rationale:"AES = urgence. Conduite : rinçage immédiat abondant > alerte > traçabilité > procédure (bilan sanguin, consultation, déclaration AT). Pas de SHA sur muqueuse.",
+    image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='200' viewBox='0 0 600 200'%3E%3Crect fill='%230f1a31' width='600' height='200'/%3E%3Ccircle cx='100' cy='100' r='60' fill='%23ff5d7a' fill-opacity='0.15' stroke='%23ff5d7a' stroke-width='3'/%3E%3Cpath d='M85 85 Q100 70 115 85' stroke='%23ff5d7a' stroke-width='3' fill='none'/%3E%3Ccircle cx='90' cy='90' r='8' fill='%23ff5d7a'/%3E%3Ccircle cx='110' cy='90' r='8' fill='%23ff5d7a'/%3E%3Ctext x='100' y='175' fill='%23a9b7da' font-family='system-ui' font-size='11' text-anchor='middle'%3EAES%3C/text%3E%3Cpath d='M160 100 L220 100' stroke='%23ffd166' stroke-width='3' marker-end='url(%23arrow3)'/%3E%3Crect x='220' y='70' width='160' height='60' rx='8' fill='%235dd6ff' fill-opacity='0.1' stroke='%235dd6ff' stroke-width='2'/%3E%3Ctext x='300' y='95' fill='%23e8eefc' font-family='system-ui' font-size='12' text-anchor='middle'%3ERINCER 15 min%3C/text%3E%3Ctext x='300' y='115' fill='%23a9b7da' font-family='system-ui' font-size='10' text-anchor='middle'%3Eeau abondante%3C/text%3E%3Cpath d='M380 100 L440 100' stroke='%23ffd166' stroke-width='3' marker-end='url(%23arrow3)'/%3E%3Crect x='440' y='70' width='140' height='60' rx='8' fill='%239bffb5' fill-opacity='0.1' stroke='%239bffb5' stroke-width='2'/%3E%3Ctext x='510' y='95' fill='%23e8eefc' font-family='system-ui' font-size='11' text-anchor='middle'%3EALERTER%3C/text%3E%3Ctext x='510' y='110' fill='%23a9b7da' font-family='system-ui' font-size='10' text-anchor='middle'%3E+ Tracer%3C/text%3E%3Ctext x='510' y='125' fill='%23a9b7da' font-family='system-ui' font-size='10' text-anchor='middle'%3E+ Procédure%3C/text%3E%3Cdefs%3E%3Cmarker id='arrow3' markerWidth='10' markerHeight='10' refX='5' refY='3' orient='auto'%3E%3Cpath d='M0,0 L0,6 L9,3 z' fill='%23ffd166'/%3E%3C/marker%3E%3C/defs%3E%3C/svg%3E"
+  },
+  {
+    id:"q6", type:"short", points: 1.5, theme:"sst", tags:["pro"],
+    title:"Communication parent : message factuel et rassurant",
+    subtitle:"Informer sans dramatiser, tracer les faits.",
+    scenario:"16h45, crèche familiale. Un enfant de 2 ans se pince les doigts dans la porte du placard (fermeture brutale). Lésion superficielle : rougeur, léger gonflement. Premiers soins réalisés (eau froide, désinfection légère, surveillance). Pas de plaie ouverte.",
+    prompt:"Rédige un message court (4–6 lignes) pour les parents : contexte, faits observés, actions menées, consignes de surveillance.",
+    answerShort:{
+      minWords: 40,
+      mustIncludeAny:[
+        ["heure","16h","survenu","vers"],
+        ["pincé","porte","placard","doigts"],
+        ["refroidi","eau","désinfecté","surveillé","soins"],
+        ["surveiller","consulter","douleur","gonflement","mobilité"]
+      ],
+      avoid:["grave","faute","procès"]
+    },
+    rationale:"Compétence professionnelle : communiquer de manière factuelle (heure, lieu, circonstances), rassurer sans minimiser, transmettre une consigne de surveillance claire."
+  },
+  {
+    id:"q7", type:"msq", points: 1.5, theme:"ppms", tags:["doc","pro"],
+    title:"Alarme incendie : protocole d'évacuation en collectivité",
+    subtitle:"Maîtrise du groupe + procédure.",
+    scenario:"10h20, halte-garderie (section 2–3 ans, 12 enfants présents). Odeur inhabituelle (fumée légère) + déclenchement de l'alarme incendie. Tu es dans le couloir avec 4 enfants. La salle de jeux (8 enfants + 1 collègue) est à 10 mètres.",
+    prompt:"Quelles actions sont attendues dans ce contexte ? (plusieurs réponses possibles)",
+    choices:[
+      {key:"A", a:"Appliquer l'organisation prévue : regrouper les enfants, évacuer par l'issue désignée, rejoindre le point de rassemblement, compter les effectifs"},
+      {key:"B", a:"Retourner chercher son téléphone personnel dans le vestiaire"},
+      {key:"C", a:"Fermer les portes derrière soi si c'est possible sans danger (limiter la propagation des fumées)"},
+      {key:"D", a:"Se disperser pour sortir plus vite, chacun par l'issue la plus proche"},
+      {key:"E", a:"Rassurer les enfants, maintenir le groupe, rester calme et directif"}
+    ],
+    answer:["A","C","E"],
+    rationale:"Évacuation incendie = procédure + maîtrise des effectifs + limitation de la propagation (fermeture des portes) + calme. On n'ajoute pas de risques.",
+    image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='200' viewBox='0 0 600 200'%3E%3Crect fill='%230f1a31' width='600' height='200'/%3E%3Crect x='50' y='50' width='150' height='100' rx='8' fill='%23ff5d7a' fill-opacity='0.1' stroke='%23ff5d7a' stroke-width='2'/%3E%3Cpath d='M90 90 L90 120 M110 90 L110 120 M130 90 L130 120' stroke='%23ff5d7a' stroke-width='3'/%3E%3Cpath d='M85 85 Q95 70 105 85 Q115 70 125 85 Q135 70 145 85' stroke='%23ffd166' stroke-width='2' fill='none'/%3E%3Ctext x='125' y='170' fill='%23a9b7da' font-family='system-ui' font-size='11' text-anchor='middle'%3EALARME%3C/text%3E%3Cpath d='M200 100 L280 100' stroke='%235dd6ff' stroke-width='3' marker-end='url(%23arrow4)'/%3E%3Crect x='280' y='60' width='140' height='80' rx='8' fill='%235dd6ff' fill-opacity='0.1' stroke='%235dd6ff' stroke-width='2'/%3E%3Ctext x='350' y='85' fill='%23e8eefc' font-family='system-ui' font-size='12' text-anchor='middle'%3EÉVACUER%3C/text%3E%3Ctext x='350' y='105' fill='%23a9b7da' font-family='system-ui' font-size='10' text-anchor='middle'%3EGroupe maîtrisé%3C/text%3E%3Ctext x='350' y='120' fill='%23a9b7da' font-family='system-ui' font-size='10' text-anchor='middle'%3EFermer portes%3C/text%3E%3Ctext x='350' y='135' fill='%23a9b7da' font-family='system-ui' font-size='10' text-anchor='middle'%3ECalme%3C/text%3E%3Cpath d='M420 100 L480 100' stroke='%235dd6ff' stroke-width='3' marker-end='url(%23arrow4)'/%3E%3Ccircle cx='530' cy='100' r='50' fill='%239bffb5' fill-opacity='0.1' stroke='%239bffb5' stroke-width='2'/%3E%3Ctext x='530' y='105' fill='%23e8eefc' font-family='system-ui' font-size='11' text-anchor='middle'%3EPOINT DE%3C/text%3E%3Ctext x='530' y='120' fill='%23e8eefc' font-family='system-ui' font-size='11' text-anchor='middle'%3ERASSEMBLEMENT%3C/text%3E%3Cdefs%3E%3Cmarker id='arrow4' markerWidth='10' markerHeight='10' refX='5' refY='3' orient='auto'%3E%3Cpath d='M0,0 L0,6 L9,3 z' fill='%235dd6ff'/%3E%3C/marker%3E%3C/defs%3E%3C/svg%3E"
+  },
+  {
+    id:"q8", type:"short", points: 2, theme:"ppms", tags:["doc","kpi"],
+    title:"PPMS de ton établissement : mission terrain professionnalisante",
+    subtitle:"Recherche documentaire + restitution structurée.",
+    scenario:"Tu es en stage/alternance dans une structure AEPE. Le formateur te demande de prouver que tu connais l'organisation sécurité réelle de ton lieu d'exercice.",
+    prompt:"Rédige une réponse structurée (6–8 lignes minimum) : (1) où se trouve le PPMS, (2) qui est le référent sécurité, (3) point de rassemblement extérieur, (4) 2 consignes clés pour les pros.",
+    answerShort:{
+      minWords: 50,
+      mustIncludeAny:[
+        ["ppms","classeur","affichage","intranet","ent","direction","bureau","panneau"],
+        ["référent","directeur","directrice","responsable","adjoint"],
+        ["rassemblement","cour","parking","portail","zone","extérieur"],
+        ["consigne","alerte","confinement","évacuation","appel","comptage","signal"]
+      ],
+      avoid:["je ne sais pas","aucune idée","pas trouvé"]
+    },
+    rationale:"Compétence : rechercher l'information, s'approprier les procédures, restituer de manière exploitable. Si PPMS non trouvé : décrire la démarche et signaler l'écart."
+  },
+  {
+    id:"q9", type:"mcq", points: 1, theme:"tms", tags:["pro"],
+    title:"Prévention TMS : hiérarchie des mesures applicables",
+    subtitle:"Agir sur le poste et l'organisation.",
+    scenario:"Crèche collective, section bébés (6–18 mois). Gestes répétés au sol (changes, jeux, portage), flexion lombaire fréquente, douleurs dorsales récurrentes chez 3 pros sur 5.",
+    prompt:"Quelle action est prioritaire selon les principes de prévention des TMS ?",
+    choices:[
+      {key:"A", a:"Forcer : le corps finit toujours par s'habituer aux contraintes"},
+      {key:"B", a:"Adapter la hauteur des plans de change, rapprocher les charges, utiliser des sièges ergonomiques ou appuis, organiser des rotations de postes"},
+      {key:"C", a:"Prendre des antidouleurs avant chaque service"},
+      {key:"D", a:"Arrêter toute activité physique en dehors du travail"}
+    ],
+    answer:["B"],
+    rationale:"Prévention TMS = agir sur les déterminants (poste, organisation, équipements) avant les compensations individuelles. Principe : supprimer ou réduire la contrainte à la source.",
+    image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='220' viewBox='0 0 600 220'%3E%3Crect fill='%230f1a31' width='600' height='220'/%3E%3Ctext x='300' y='25' fill='%23e8eefc' font-family='system-ui' font-size='14' font-weight='700' text-anchor='middle'%3EHIÉRARCHIE DES MESURES TMS%3C/text%3E%3Crect x='50' y='50' width='500' height='35' rx='6' fill='%239bffb5' fill-opacity='0.15' stroke='%239bffb5' stroke-width='2'/%3E%3Ctext x='70' y='73' fill='%23e8eefc' font-family='system-ui' font-size='11' font-weight='700'%3E1. SUPPRIMER / RÉDUIRE À LA SOURCE%3C/text%3E%3Crect x='80' y='95' width='480' height='30' rx='6' fill='%235dd6ff' fill-opacity='0.15' stroke='%235dd6ff' stroke-width='2'/%3E%3Ctext x='100' y='115' fill='%23e8eefc' font-family='system-ui' font-size='10'%3E2. ORGANISATION + AMÉNAGEMENT%3C/text%3E%3Crect x='110' y='135' width='460' height='30' rx='6' fill='%23ffd166' fill-opacity='0.15' stroke='%23ffd166' stroke-width='2'/%3E%3Ctext x='130' y='155' fill='%23e8eefc' font-family='system-ui' font-size='10'%3E3. EPI (si mesures précédentes insuffisantes)%3C/text%3E%3Crect x='140' y='175' width='440' height='30' rx='6' fill='%23ff5d7a' fill-opacity='0.15' stroke='%23ff5d7a' stroke-width='2'/%3E%3Ctext x='160' y='195' fill='%23e8eefc' font-family='system-ui' font-size='10'%3E4. INFORMATION / FORMATION%3C/text%3E%3C/svg%3E"
+  },
+  {
+    id:"q10", type:"short", points: 1.5, theme:"tms", tags:["kpi"],
+    title:"Micro-plan d'action TMS : de l'observation à l'amélioration pilotée",
+    subtitle:"Mesures concrètes + indicateur de suivi.",
+    scenario:"Multi-accueil (25 places). Observation : plans de travail encombrés (produits, linge, jouets), déplacements inutiles pour atteindre le matériel, chocs répétés contre les meubles, fatigue en fin de journée.",
+    prompt:"Propose 2 actions réalistes (aménagement ou organisation) + 1 indicateur mesurable pour vérifier que l'amélioration tient dans le temps (5–7 lignes).",
+    answerShort:{
+      minWords: 42,
+      mustIncludeAny:[
+        ["rangement","5s","zone","standard","procédure","check","routine","affichage","responsable"],
+        ["indicateur","suivi","hebdomadaire","mensuel","taux","nombre","photo","audit","contrôle"]
+      ],
+      avoid:["on verra","faut faire attention","c'est suffisant"]
+    },
+    rationale:"Attendu : action concrète (zone de rangement dédiée, check-list visuelle) + indicateur de pilotage (photo hebdomadaire, taux de conformité). On transforme une observation en maîtrise durable."
+  },
+  {
+    id:"q11", type:"mcq", points: 1, theme:"cadre", tags:["pro"],
+    title:"Usage du téléphone personnel : posture professionnelle et surveillance",
+    subtitle:"Responsabilité collective, recadrage constructif.",
+    scenario:"15h30, halte-garderie. Un collègue consulte régulièrement son téléphone en salle d'activité (messages, réseaux sociaux). Il dit : « Je garde quand même un œil sur les enfants. »",
+    prompt:"Quelle posture est la plus professionnelle dans ce contexte ?",
+    choices:[
+      {key:"A", a:"Ne rien dire : ce n'est pas ton rôle de recadrer un collègue"},
+      {key:"B", a:"Aborder le sujet factuellement (impact sur la surveillance, sécurité des enfants) et proposer une organisation (pause téléphone en alternance)"},
+      {key:"C", a:"Filmer la scène pour prouver le manquement"},
+      {key:"D", a:"Alerter directement les parents"}
+    ],
+    answer:["B"],
+    rationale:"Posture pro = recadrage factuel (sécurité/surveillance) + solution organisationnelle. La bienveillance professionnelle n'exclut pas l'exigence."
+  },
+  {
+    id:"q12", type:"mcq", points: 1, theme:"infectieux", tags:["risk","doc"],
+    title:"Produit chimique non étiqueté : STOP et procédure",
+    subtitle:"Risque chimique = identification obligatoire.",
+    scenario:"8h15, crèche collective. Tu découvres un flacon pulvérisateur sans étiquette près de l'évier (cuisine). Liquide transparent, odeur javellisée. Dilution et origine inconnues.",
+    prompt:"Quelle conduite est conforme aux règles de prévention du risque chimique ?",
+    choices:[
+      {key:"A", a:"Utiliser le produit en mettant plus d'eau pour diluer davantage"},
+      {key:"B", a:"Mettre le flacon de côté, tenter d'identifier le produit (étiquette, FDS, responsable), ne pas utiliser tant que l'identification n'est pas sûre"},
+      {key:"C", a:"Sentir le produit pour deviner ce que c'est"},
+      {key:"D", a:"Jeter le contenu directement dans l'évier"}
+    ],
+    answer:["B"],
+    rationale:"Sans identification claire (étiquette, FDS), usage interdit. On sécurise, on identifie, on applique la procédure. Jamais d'improvisation avec un produit chimique.",
+    image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='200' viewBox='0 0 600 200'%3E%3Crect fill='%230f1a31' width='600' height='200'/%3E%3Crect x='50' y='50' width='100' height='120' rx='8' fill='%23ff5d7a' fill-opacity='0.15' stroke='%23ff5d7a' stroke-width='3'/%3E%3Crect x='60' y='60' width='80' height='90' rx='4' fill='none' stroke='%23ff5d7a' stroke-width='2'/%3E%3Cpath d='M70 130 L130 130 L130 160 L70 160 Z' fill='%23ff5d7a' fill-opacity='0.3'/%3E%3Ctext x='100' y='95' fill='%23ff5d7a' font-family='system-ui' font-size='40' text-anchor='middle'%3E%3F%3C/text%3E%3Ctext x='100' y='185' fill='%23a9b7da' font-family='system-ui' font-size='11' text-anchor='middle'%3ENON IDENTIFIÉ%3C/text%3E%3Cpath d='M150 110 L250 110' stroke='%23ffd166' stroke-width='3'/%3E%3Cpath d='M235 100 L250 110 L235 120' stroke='%23ffd166' stroke-width='3' fill='none'/%3E%3Cpath d='M250 80 L250 140' stroke='%23ff5d7a' stroke-width='4'/%3E%3Ccircle cx='250' cy='110' r='25' fill='none' stroke='%23ff5d7a' stroke-width='4'/%3E%3Ctext x='250' y='160' fill='%23ff5d7a' font-family='system-ui' font-size='14' font-weight='700' text-anchor='middle'%3ESTOP%3C/text%3E%3Crect x='350' y='60' width='200' height='90' rx='8' fill='%239bffb5' fill-opacity='0.1' stroke='%239bffb5' stroke-width='2'/%3E%3Ctext x='450' y='85' fill='%23e8eefc' font-family='system-ui' font-size='12' text-anchor='middle'%3EIDENTIFIER%3C/text%3E%3Ctext x='450' y='105' fill='%23a9b7da' font-family='system-ui' font-size='10' text-anchor='middle'%3EÉtiquette + FDS%3C/text%3E%3Ctext x='450' y='120' fill='%23a9b7da' font-family='system-ui' font-size='10' text-anchor='middle'%3EResponsable%3C/text%3E%3Ctext x='450' y='135' fill='%23a9b7da' font-family='system-ui' font-size='10' text-anchor='middle'%3EProcédure%3C/text%3E%3C/svg%3E"
+  },
+  {
+    id:"q13", type:"short", points: 1, theme:"cadre", tags:["kpi","pro"],
+    title:"Faits vs interprétation : méthode d'analyse professionnelle",
+    subtitle:"Observer avant de juger.",
+    scenario:"10h45, crèche. Un enfant (2 ans 1/2) court dans le couloir et tombe en heurtant le coin d'un meuble. Léger hématome front, enfant rassuré. Un adulte dit : « Il est toujours excité, c'est sa faute, il fonce tout le temps. »",
+    prompt:"Rédige une réponse structurée (4–6 lignes) : 2 faits observables + 2 hypothèses organisation/environnement à vérifier (sans jugement de valeur).",
+    answerShort:{
+      minWords: 35,
+      mustIncludeAny:[
+        ["fait","observé","vu","constaté","couloir","meuble","coin","heurté","couru"],
+        ["hypothèse","vérifier","organisation","aménagement","signalisation","encombrement","supervision","circulation"]
+      ],
+      avoid:["c'est sa faute","toujours pareil","excité"]
+    },
+    rationale:"On distingue l'observable (faits : heure, lieu, action, résultat) et l'explicatif (hypothèses : organisation de l'espace, signalisation, supervision). La prévention durable naît de cette discipline."
+  },
+  {
+    id:"q14", type:"msq", points: 1.5, theme:"cadre", tags:["risk"],
+    title:"Risque électrique : repérer, sécuriser, signaler",
+    subtitle:"Pas de bricolage, intervention qualifiée.",
+    scenario:"Salle de motricité, crèche collective. Constat : prise murale fissurée + rallonge électrique enroulée serrée (chauffe) sous un tapis de sol.",
+    prompt:"Quelles actions sont pertinentes dans ce contexte ? (plusieurs réponses possibles)",
+    choices:[
+      {key:"A", a:"Interdire l'usage de la zone concernée, sécuriser (rubalise, panneau), signaler au responsable, demander intervention d'un électricien qualifié"},
+      {key:"B", a:"Réparer toi-même la prise avec du scotch"},
+      {key:"C", a:"Retirer le tapis et dérouler complètement la rallonge si elle doit rester temporairement (éviter échauffement), mais prévoir suppression rapide"},
+      {key:"D", a:"Ignorer : ça n'a jamais posé de problème avant"}
+    ],
+    answer:["A","C"],
+    rationale:"On sécurise, on supprime le danger immédiat si possible (dérouler rallonge), on alerte la hiérarchie, on demande une intervention qualifiée. Jamais de réparation électrique par un non-habilité.",
+    image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='200' viewBox='0 0 600 200'%3E%3Crect fill='%230f1a31' width='600' height='200'/%3E%3Cg%3E%3Ccircle cx='120' cy='100' r='70' fill='%23ffd166' fill-opacity='0.1' stroke='%23ffd166' stroke-width='3'/%3E%3Cpath d='M105 70 L120 100 L105 100 L120 130' stroke='%23ffd166' stroke-width='4' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Ctext x='120' y='185' fill='%23a9b7da' font-family='system-ui' font-size='11' text-anchor='middle'%3ERISQUE%3C/text%3E%3C/g%3E%3Cpath d='M190 100 L280 100' stroke='%235dd6ff' stroke-width='3' marker-end='url(%23arrow5)'/%3E%3Crect x='280' y='60' width='140' height='80' rx='8' fill='%23ff5d7a' fill-opacity='0.1' stroke='%23ff5d7a' stroke-width='2'/%3E%3Ctext x='350' y='90' fill='%23e8eefc' font-family='system-ui' font-size='13' font-weight='700' text-anchor='middle'%3ESÉCURISER%3C/text%3E%3Ctext x='350' y='108' fill='%23a9b7da' font-family='system-ui' font-size='10' text-anchor='middle'%3EInterdire zone%3C/text%3E%3Ctext x='350' y='123' fill='%23a9b7da' font-family='system-ui' font-size='10' text-anchor='middle'%3ESignaler%3C/text%3E%3Cpath d='M420 100 L480 100' stroke='%235dd6ff' stroke-width='3' marker-end='url(%23arrow5)'/%3E%3Crect x='480' y='70' width='100' height='60' rx='8' fill='%239bffb5' fill-opacity='0.1' stroke='%239bffb5' stroke-width='2'/%3E%3Ctext x='530' y='95' fill='%23e8eefc' font-family='system-ui' font-size='11' text-anchor='middle'%3EINTERVENTION%3C/text%3E%3Ctext x='530' y='110' fill='%23a9b7da' font-family='system-ui' font-size='10' text-anchor='middle'%3Equalifiée%3C/text%3E%3Cdefs%3E%3Cmarker id='arrow5' markerWidth='10' markerHeight='10' refX='5' refY='3' orient='auto'%3E%3Cpath d='M0,0 L0,6 L9,3 z' fill='%235dd6ff'/%3E%3C/marker%3E%3C/defs%3E%3C/svg%3E"
+  },
+  {
+    id:"q15", type:"msq", points: 1.5, theme:"infectieux", tags:["risk","doc"],
+    title:"PAI allergie alimentaire : cadre strict, zéro improvisation",
+    subtitle:"Protocole = sécurité de l'enfant.",
+    scenario:"Goûter anniversaire, multi-accueil. Un parent apporte un gâteau maison (ingrédients non précisés). Un enfant du groupe a un PAI (allergie œuf et arachide).",
+    prompt:"Quelles actions sont cohérentes avec la gestion d'un PAI ? (plusieurs réponses possibles)",
+    choices:[
+      {key:"A", a:"Vérifier le PAI, interroger le parent sur les ingrédients exacts, évaluer le risque de contamination croisée"},
+      {key:"B", a:"Faire goûter un tout petit morceau pour tester la réaction"},
+      {key:"C", a:"Prévoir systématiquement une alternative sûre et conforme au PAI pour l'enfant allergique"},
+      {key:"D", a:"Informer l'équipe présente et tracer l'événement si besoin (cahier de liaison, registre)"}
+    ],
+    answer:["A","C","D"],
+    rationale:"PAI = protocole strict. Pas de test improvisé (réaction potentiellement grave). On anticipe, on sécurise, on trace. La responsabilité est engagée.",
+    image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='200' viewBox='0 0 600 200'%3E%3Crect fill='%230f1a31' width='600' height='200'/%3E%3Crect x='50' y='50' width='150' height='100' rx='8' fill='%23ff5d7a' fill-opacity='0.12' stroke='%23ff5d7a' stroke-width='2'/%3E%3Ctext x='125' y='75' fill='%23e8eefc' font-family='system-ui' font-size='13' font-weight='700' text-anchor='middle'%3EPAI%3C/text%3E%3Ctext x='125' y='95' fill='%23a9b7da' font-family='system-ui' font-size='10' text-anchor='middle'%3EŒuf%3C/text%3E%3Ctext x='125' y='110' fill='%23a9b7da' font-family='system-ui' font-size='10' text-anchor='middle'%3EArachide%3C/text%3E%3Ctext x='125' y='125' fill='%23a9b7da' font-family='system-ui' font-size='10' text-anchor='middle'%3ETraces%3C/text%3E%3Ctext x='125' y='140' fill='%23ff5d7a' font-family='system-ui' font-size='10' font-weight='700' text-anchor='middle'%3EURGENCE%3C/text%3E%3Cpath d='M200 100 L320 100' stroke='%235dd6ff' stroke-width='3' marker-end='url(%23arrow6)'/%3E%3Crect x='320' y='60' width='240' height='80' rx='8' fill='%239bffb5' fill-opacity='0.1' stroke='%239bffb5' stroke-width='2'/%3E%3Ctext x='440' y='85' fill='%23e8eefc' font-family='system-ui' font-size='12' text-anchor='middle'%3EPROTOCOLE STRICT%3C/text%3E%3Ctext x='440' y='103' fill='%23a9b7da' font-family='system-ui' font-size='10' text-anchor='middle'%3EVérifier ingrédients%3C/text%3E%3Ctext x='440' y='118' fill='%23a9b7da' font-family='system-ui' font-size='10' text-anchor='middle'%3EAlternative sûre%3C/text%3E%3Ctext x='440' y='133' fill='%23a9b7da' font-family='system-ui' font-size='10' text-anchor='middle'%3ETracer%3C/text%3E%3Cdefs%3E%3Cmarker id='arrow6' markerWidth='10' markerHeight='10' refX='5' refY='3' orient='auto'%3E%3Cpath d='M0,0 L0,6 L9,3 z' fill='%235dd6ff'/%3E%3C/marker%3E%3C/defs%3E%3C/svg%3E"
+  },
+  {
+    id:"q16", type:"msq", points: 1.5, theme:"cadre", tags:["risk"],
+    title:"Chute de plain-pied : identifier les facteurs contributifs réels",
+    subtitle:"Multi-causalité = analyse systémique.",
+    scenario:"14h15, halte-garderie. Activité peinture terminée. Sol humide (nettoyage en cours). Un enfant glisse légèrement en se relevant (sans chute). Aucun blessé.",
+    prompt:"Quels facteurs augmentent réellement le risque de chute dans ce contexte ? (plusieurs réponses possibles)",
+    choices:[
+      {key:"A", a:"Sol humide ou produit de nettoyage mal rincé (état de surface)"},
+      {key:"B", a:"Circulation encombrée (matériel, mobilier mal rangé)"},
+      {key:"C", a:"Chaussures antidérapantes portées par les adultes"},
+      {key:"D", a:"Absence de signalisation temporaire (panneau « sol glissant »)"},
+      {key:"E", a:"L'enfant a couru : c'est la seule cause"}
+    ],
+    answer:["A","B","D"],
+    rationale:"On retient les facteurs matériels (sol), organisationnels (circulation, rangement) et informationnels (signalisation). Les chaussures antidérapantes sont une mesure de prévention. Le comportement seul est rarement l'unique cause."
+  },
+  {
+    id:"q17", type:"msq", points: 1.5, theme:"ppms", tags:["doc"],
+    title:"PPMS : appropriation collective et mise à jour",
+    subtitle:"Un document vivant, pas une archive.",
+    scenario:"Rentrée septembre. Arrivée de 3 stagiaires et 1 alternante. Aucune n'a eu accès au PPMS ni aux consignes d'évacuation/confinement.",
+    prompt:"Quelles actions permettent une appropriation efficace du PPMS par l'équipe ? (plusieurs réponses possibles)",
+    choices:[
+      {key:"A", a:"Identifier l'emplacement et les modalités d'accès (classeur direction, affichage, ENT, intranet)"},
+      {key:"B", a:"Organiser un rappel collectif : signaux d'alerte, rôles de chacun, zones de rassemblement/confinement"},
+      {key:"C", a:"Attendre qu'un incident se produise pour découvrir les consignes"},
+      {key:"D", a:"Vérifier la mise à jour des coordonnées d'urgence (services, parents, équipe)"},
+      {key:"E", a:"Cacher le document pour éviter que les stagiaires posent trop de questions"}
+    ],
+    answer:["A","B","D"],
+    rationale:"PPMS efficace = accessibilité + appropriation (formation, rappel) + mise à jour régulière + entraînement. Les stagiaires doivent être intégrés dès leur arrivée."
+  },
+  {
+    id:"q18", type:"mcq", points: 1, theme:"cadre", tags:["doc"],
+    title:"Douleur lombaire en situation : traçabilité et prévention",
+    subtitle:"Culture de déclaration = protection collective.",
+    scenario:"11h, crèche. Tu soulèves un bac de jeux lourd (15 kg, mal rangé au sol). Douleur lombaire immédiate, blocage partiel.",
+    prompt:"Quelle conduite est la plus professionnelle dans ce contexte ?",
+    choices:[
+      {key:"A", a:"Ne rien dire pour ne pas déranger l'équipe"},
+      {key:"B", a:"Informer immédiatement le responsable, tracer l'incident, consulter si nécessaire, analyser les causes (organisation, port de charge, aménagement)"},
+      {key:"C", a:"Attendre 15 jours pour voir si ça passe"},
+      {key:"D", a:"Poster sur les réseaux sociaux pour dénoncer les conditions de travail"}
+    ],
+    answer:["B"],
+    rationale:"Informer + tracer sert la prévention collective et la santé individuelle. Si accident du travail : déclaration obligatoire. On analyse ensuite l'organisation et le poste."
+  },
+  {
+    id:"q19", type:"mcq", points: 1, theme:"infectieux", tags:["pro"],
+    title:"Épisode de gastro-entérite : protocole et organisation",
+    subtitle:"Hygiène renforcée + limitation de la transmission.",
+    scenario:"9h45, crèche collective. Deux enfants (section 12–18 mois) présentent vomissements dans un délai de 30 minutes. Tu es en renfort ce matin.",
+    prompt:"Quel réflexe est le plus adapté dans ce contexte ?",
+    choices:[
+      {key:"A", a:"Nettoyer rapidement sans changer de gants entre les deux zones"},
+      {key:"B", a:"Appliquer le protocole : isolement des enfants malades si possible, hygiène des mains renforcée, désinfection adaptée des surfaces, gestion des déchets souillés, information immédiate équipe et parents"},
+      {key:"C", a:"Continuer normalement : ça finira par passer"},
+      {key:"D", a:"Mettre du parfum d'ambiance pour masquer les odeurs"}
+    ],
+    answer:["B"],
+    rationale:"Épisode infectieux = protocole + organisation + hygiène stricte. On limite la transmission (isolement si possible, hygiène des mains, désinfection, gestion des déchets) et on trace."
+  },
+  {
+    id:"q20", type:"short", points: 2, theme:"cadre", tags:["kpi","doc"],
+    title:"Hiérarchie des mesures de prévention : principe fondamental PSE",
+    subtitle:"Du plus efficace (source) au moins efficace (comportement).",
+    scenario:"Un risque professionnel a été identifié dans ta structure (exemples : chute, coupure, exposition chimique, TMS…). On te demande de proposer une démarche de prévention structurée.",
+    prompt:"Explique en 7–10 lignes la logique de hiérarchisation des mesures : supprimer/maîtriser à la source → mesures organisationnelles/collectives → protections individuelles (EPI) → information/consignes. Illustre avec 1 exemple concret en structure AEPE.",
+    answerShort:{
+      minWords: 65,
+      mustIncludeAny:[
+        ["supprimer","éliminer","source","maîtriser","substituer"],
+        ["organisation","aménagement","procédure","collectif","planification"],
+        ["epi","gants","protection","équipement","individuel"],
+        ["consigne","information","sensibilisation","formation","comportement"]
+      ],
+      avoid:["on fait attention","c'est suffisant"]
+    },
+    rationale:"Hiérarchie PSE : (1) Supprimer ou réduire le danger à la source, (2) Mesures organisationnelles/collectives, (3) EPI si insuffisant, (4) Information/formation. Exemple AEPE : risque de chute → (1) supprimer obstacle, (2) organiser circulation/rangement, (3) chaussures antidérapantes si nécessaire, (4) sensibiliser l'équipe."
+  }
+];
+
+function escapeHtml(str){
+  return (str ?? "").toString()
+    .replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;").replaceAll("'","&#039;");
+}
+
+let currentFilter = "all";
+let locked = false;
+
+const elQ = document.getElementById("questions");
+const elBar = document.getElementById("bar");
+const elProgressText = document.getElementById("progressText");
+const elBtnCorrect = document.getElementById("btnCorrect");
+const elResults = document.getElementById("results");
+const elScoreBig = document.getElementById("scoreBig");
+const elScoreMeta = document.getElementById("scoreMeta");
+const elKpiOk = document.getElementById("kpiOk");
+const elKpiPts = document.getElementById("kpiPts");
+const elKpiRate = document.getElementById("kpiRate");
+const elCorrList = document.getElementById("corrList");
+const elCopyState = document.getElementById("copyState");
+const elBtnGoResults = document.getElementById("btnGoResults");
+const elNom = document.getElementById("nom");
+const elPrenom = document.getElementById("prenom");
+const elClasse = document.getElementById("classe");
+const elDate = document.getElementById("date");
+const elEmailFormateur = document.getElementById("emailFormateur");
+const elLockState = document.getElementById("lockState");
+const btnLock = document.getElementById("btnLock");
+const btnUnlock = document.getElementById("btnUnlock");
+const btnReset = document.getElementById("btnReset");
+const btnMail = document.getElementById("btnMail");
+const btnCopy = document.getElementById("btnCopy");
+const btnCollapse = document.getElementById("btnCollapse");
+const elMode = document.getElementById("mode");
+const btnGoConsignes = document.getElementById("btnGoConsignes");
+const btnGoQuestions = document.getElementById("btnGoQuestions");
+const btnGoResults = document.getElementById("btnGoResults");
+
+function render(){
+  const list = currentFilter === "all" ? QUESTIONS : QUESTIONS.filter(q => q.theme === currentFilter);
+  
+  elQ.innerHTML = list.map((q, idx) => {
+    const tags = (q.tags||[]).map(t=>{
+      const cls = t==="kpi" ? "kpi" : t==="risk" ? "risk" : t==="doc" ? "doc" : "pro";
+      return `<span class="tag ${cls}">${escapeHtml(t.toUpperCase())}</span>`;
+    }).join("");
+    const pts = `<span class="tag">${q.points} pt${q.points>1?"s":""}</span>`;
+
+    let body = "";
+    if(q.type === "mcq" || q.type === "msq"){
+      const inputType = q.type === "mcq" ? "radio" : "checkbox";
+      body = `
+        <div class="scenario">
+          <p class="h">Contexte professionnel</p>
+          <p class="p">${escapeHtml(q.scenario)}</p>
+        </div>
+        ${q.image ? `<img src="${q.image}" alt="Visuel pédagogique" class="visualImg" style="max-width:600px;"/>` : ''}
+        <p style="margin:10px 0 0; font-weight:900;">${escapeHtml(q.prompt)}</p>
+        <div class="choices">
+          ${q.choices.map(c => `
+            <label class="choice">
+              <input type="${inputType}" name="${q.id}" value="${c.key}" />
+              <div class="ct">
+                <div class="a">${escapeHtml(c.key)} — ${escapeHtml(c.a)}</div>
+              </div>
+            </label>
+          `).join("")}
+        </div>
+      `;
+    } else {
+      body = `
+        <div class="scenario">
+          <p class="h">Contexte professionnel</p>
+          <p class="p">${escapeHtml(q.scenario)}</p>
+        </div>
+        <p style="margin:10px 0 0; font-weight:900;">${escapeHtml(q.prompt)}</p>
+        <textarea id="${q.id}__text" placeholder="Rédige une réponse professionnelle structurée..."></textarea>
+        <div class="pill" style="margin-top:8px;">Structure : faits → analyse → action(s) → traçabilité</div>
+      `;
+    }
+
+    return `
+      <details data-q="${q.id}">
+        <summary>
+          <div class="qTitle">
+            <div class="qNum">${idx+1}</div>
+            <div class="qMeta">
+              <p class="t">${escapeHtml(q.title)}</p>
+              <p class="s">${escapeHtml(q.subtitle)}</p>
+            </div>
+          </div>
+          <div class="qRight">${pts}${tags}</div>
+        </summary>
+        <div class="qBody">${body}</div>
+      </details>
+    `;
+  }).join("");
+
+  wireProgress();
+}
+
+function allRequiredFilled(){
+  return elNom.value.trim().length>0 && elPrenom.value.trim().length>0 && elDate.value.trim().length>0;
+}
+
+function setLock(state){
+  locked = state;
+  [elNom, elPrenom, elClasse, elDate, elEmailFormateur].forEach(el => el.disabled = state);
+  btnLock.disabled = state;
+  btnUnlock.disabled = !state;
+  elLockState.innerHTML = `Statut : <b>${state ? "verrouillé" : "non verrouillé"}</b>`;
+}
+
+function wireProgress(){
+  const inputs = document.querySelectorAll('input[type="radio"], input[type="checkbox"], textarea');
+  inputs.forEach(el => el.addEventListener("input", updateProgress));
+  updateProgress();
+}
+
+function answeredCount(){
+  let answered = 0;
+  for(const q of QUESTIONS){
+    if(q.type==="mcq"){
+      const sel = document.querySelector(`input[name="${q.id}"]:checked`);
+      if(sel) answered++;
+    } else if(q.type==="msq"){
+      const sel = document.querySelectorAll(`input[name="${q.id}"]:checked`);
+      if(sel.length>0) answered++;
+    } else {
+      const t = document.getElementById(`${q.id}__text`);
+      if(t && t.value.trim().length>0) answered++;
+    }
+  }
+  return answered;
+}
+
+function updateProgress(){
+  const total = QUESTIONS.length;
+  const ans = answeredCount();
+  const pct = Math.round((ans/total)*100);
+  elBar.style.width = pct + "%";
+  elProgressText.innerHTML = `Progression : <b>${pct}%</b>`;
+  elBtnCorrect.disabled = !(allRequiredFilled());
+}
+
+function normalize(s){
+  return (s||"").toLowerCase()
+    .normalize("NFD").replace(/\p{Diacritic}/gu,"")
+    .replace(/[^\p{L}\p{N}\s-]/gu," ")
+    .replace(/\s+/g," ")
+    .trim();
+}
+
+function scoreShort(q, text){
+  const t = normalize(text);
+  const words = t.length ? t.split(" ").length : 0;
+  let okBlocks = 0;
+
+  if(q.answerShort && Array.isArray(q.answerShort.mustIncludeAny)){
+    for(const block of q.answerShort.mustIncludeAny){
+      const found = block.some(term => t.includes(normalize(term)));
+      if(found) okBlocks++;
+    }
+  }
+  const minWords = q.answerShort?.minWords ?? 0;
+  const avoid = q.answerShort?.avoid ?? [];
+  const hasAvoid = avoid.some(term => t.includes(normalize(term)));
+
+  const blocksTotal = (q.answerShort?.mustIncludeAny?.length ?? 0) || 1;
+  const blockScore = okBlocks / blocksTotal;
+  const lenScore = minWords ? Math.min(1, words / minWords) : 1;
+
+  let raw = 0.6*blockScore + 0.4*lenScore;
+  if(hasAvoid) raw = Math.max(0, raw - 0.25);
+
+  const pts = q.points * raw;
+  return { pts, raw, words, okBlocks, blocksTotal, hasAvoid };
+}
+
+function getSelected(q){
+  if(q.type==="mcq"){
+    const sel = document.querySelector(`input[name="${q.id}"]:checked`);
+    return sel ? [sel.value] : [];
+  }
+  if(q.type==="msq"){
+    const sel = [...document.querySelectorAll(`input[name="${q.id}"]:checked`)];
+    return sel.map(x=>x.value);
+  }
+  const t = document.getElementById(`${q.id}__text`);
+  return t ? [t.value] : [""];
+}
+
+function arraysEqualAsSets(a,b){
+  const sa = new Set(a);
+  const sb = new Set(b);
+  if(sa.size !== sb.size) return false;
+  for(const x of sa) if(!sb.has(x)) return false;
+  return true;
+}
+
+function calcTotalPoints(){ return QUESTIONS.reduce((s,q)=>s+q.points,0); }
+
+function formatScoreOn20(points){
+  const total = calcTotalPoints();
+  const on20 = (points/total)*20;
+  return Math.round(on20*10)/10;
+}
+
+function nowStr(){
+  const d = new Date();
+  const pad = (n)=>String(n).padStart(2,"0");
+  return `${pad(d.getDate())}/${pad(d.getMonth()+1)}/${d.getFullYear()} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
+
+function correct(){
+  if(!allRequiredFilled()){ alert("Cartouche incomplet : Nom, Prénom et Date obligatoires."); return; }
+
+  const mode = elMode.value;
+  let points = 0;
+  let validCount = 0;
+  const corrItems = [];
+
+  for(let i=0;i<QUESTIONS.length;i++){ 
+    const q = QUESTIONS[i];
+    const user = getSelected(q);
+
+    if(q.type==="mcq" || q.type==="msq"){
+      const ok = arraysEqualAsSets(user, q.answer);
+      const got = ok ? q.points : 0;
+      points += got;
+      if(ok) validCount++;
+      corrItems.push({
+        idx: i+1, title: q.title, ok, got, max: q.points,
+        expected: q.answer.join(", "),
+        given: user.length ? user.join(", ") : "—",
+        rationale: q.rationale
+      });
+    } else {
+      const txt = user[0] || "";
+      const r = scoreShort(q, txt);
+      points += r.pts;
+      const ok = r.raw >= 0.70 && txt.trim().length>0;
+      if(ok) validCount++;
+      corrItems.push({
+        idx:i+1, title:q.title, ok,
+        got: Math.round(r.pts*10)/10, max:q.points,
+        expected:"Réponse professionnelle structurée.",
+        given: txt.trim().length ? "Rédigée" : "—",
+        rationale: q.rationale + (mode==="entrainement"
+          ? ` (Auto: ${r.okBlocks}/${r.blocksTotal} blocs, ${r.words} mots, pénalité: ${r.hasAvoid?"oui":"non"}).`
+          : "")
+      });
+    }
+  }
+
+  const total = calcTotalPoints();
+  const score20 = formatScoreOn20(points);
+  const rate = Math.round((points/total)*100);
+
+  elResults.classList.add("show");
+  elBtnGoResults.disabled = false;
+
+  elScoreBig.innerHTML = `${score20} <span>/20</span>`;
+  elScoreMeta.textContent = `${elNom.value.trim().toUpperCase()} ${elPrenom.value.trim()} — ${elClasse.value.trim()||"—"} — ${nowStr()} — Mode: ${elMode.value}`;
+  elKpiOk.textContent = `${validCount} / ${QUESTIONS.length}`;
+  elKpiPts.textContent = `${Math.round(points*10)/10} / ${total}`;
+  elKpiRate.textContent = `${rate}%`;
+
+  elCorrList.innerHTML = corrItems.map(ci => `
+    <div class="corrItem">
+      <div class="topline">
+        <div style="display:flex; gap:10px; align-items:center;">
+          <span class="qNum" style="width:30px;height:30px;border-radius:10px;">${ci.idx}</span>
+          <strong style="font-size:13px;">${escapeHtml(ci.title)}</strong>
+        </div>
+        <span class="chipRes ${ci.ok ? "ok" : "no"}">${ci.ok ? "OK" : "À REVOIR"} • ${ci.got}/${ci.max}</span>
+      </div>
+      <h4>Justification</h4>
+      <p>${escapeHtml(ci.rationale)}</p>
+      <div class="divider"></div>
+      <p><strong>Attendu :</strong> ${escapeHtml(ci.expected)}</p>
+      <p><strong>Ta réponse :</strong> ${escapeHtml(ci.given)}</p>
+    </div>
+  `).join("");
+
+  const resultText =
+`CAP AEPE – PSE V3 – Résultats
+Stagiaire : ${elNom.value.trim().toUpperCase()} ${elPrenom.value.trim()}
+Classe : ${elClasse.value.trim()||"—"}
+Date : ${elDate.value} | ${nowStr()}
+Mode : ${elMode.value}
+
+Score : ${score20}/20
+Points : ${Math.round(points*10)/10}/${total} | Réussite : ${rate}%
+Questions validées : ${validCount}/${QUESTIONS.length}
+
+Points à consolider :
+${corrItems.filter(x=>!x.ok).slice(0,6).map(x=>`- Q${x.idx} ${x.title} (${x.got}/${x.max})`).join("\n") || "- Aucun point faible majeur."}`;
+
+  elResults.dataset.resultText = resultText;
+  document.getElementById("results").scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+function mailResults(){
+  const to = elEmailFormateur.value.trim();
+  if(!to){ alert("Renseigne l'email formateur dans le cartouche."); return; }
+  const subject = `CAP AEPE PSE V3 – Résultats – ${elNom.value.trim().toUpperCase()} ${elPrenom.value.trim()}`;
+  const body = elResults.dataset.resultText || "";
+  window.location.href = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+async function copyResults(){
+  const txt = elResults.dataset.resultText || "";
+  try{
+    await navigator.clipboard.writeText(txt);
+    elCopyState.innerHTML = `Copie : <b>OK</b>`;
+    setTimeout(()=> elCopyState.innerHTML = `Copie : <b>—</b>`, 2000);
+  }catch(e){
+    const ta = document.createElement("textarea");
+    ta.value = txt;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    document.body.removeChild(ta);
+    elCopyState.innerHTML = `Copie : <b>OK</b>`;
+    setTimeout(()=> elCopyState.innerHTML = `Copie : <b>—</b>`, 2000);
+  }
+}
+
+function resetAll(){
+  if(!confirm("Réinitialiser : toutes les réponses seront effacées. Continuer ?")) return;
+  document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(i => i.checked = false);
+  document.querySelectorAll('textarea').forEach(t => t.value = "");
+  setLock(false);
+  elNom.value = ""; elPrenom.value = ""; elClasse.value = "";
+  const d = new Date(); const pad = (n)=>String(n).padStart(2,"0");
+  elDate.value = `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+  elResults.classList.remove("show");
+  elCorrList.innerHTML = "";
+  elResults.dataset.resultText = "";
+  elBtnGoResults.disabled = true;
+  updateProgress();
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+function collapseAll(){
+  document.querySelectorAll("details").forEach(d => d.open = false);
+  document.getElementById("sectionQuestions").scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+function init(){
+  const d = new Date(); const pad = (n)=>String(n).padStart(2,"0");
+  elDate.value = `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+
+  btnGoConsignes.addEventListener("click", ()=> document.getElementById("sectionConsignes").scrollIntoView({behavior:"smooth", block:"start"}));
+  btnGoQuestions.addEventListener("click", ()=> document.getElementById("sectionQuestions").scrollIntoView({behavior:"smooth", block:"start"}));
+  btnGoResults.addEventListener("click", ()=> document.getElementById("results").scrollIntoView({behavior:"smooth", block:"start"}));
+
+  document.querySelectorAll(".tab").forEach(t=> {
+    t.addEventListener("click", ()=> {
+      document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+      t.classList.add("active");
+      currentFilter = t.dataset.filter;
+      render();
+      document.getElementById("sectionQuestions").scrollIntoView({behavior:"smooth", block:"start"});
+    });
+  });
+
+  render();
+
+  [elNom, elPrenom, elDate].forEach(el => el.addEventListener("input", updateProgress));
+  elClasse.addEventListener("input", updateProgress);
+
+  btnLock.addEventListener("click", ()=> {
+    if(!allRequiredFilled()){ alert("Renseigne Nom, Prénom et Date avant de verrouiller."); return; }
+    setLock(true);
+  });
+  btnUnlock.addEventListener("click", ()=> setLock(false));
+
+  elBtnCorrect.addEventListener("click", correct);
+  btnMail.addEventListener("click", mailResults);
+  btnCopy.addEventListener("click", copyResults);
+  btnReset.addEventListener("click", resetAll);
+  btnCollapse.addEventListener("click", collapseAll);
+
+  updateProgress();
+}
+
+init();
+</script>
+</body>
+</html>

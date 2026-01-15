@@ -1,0 +1,168 @@
+# 🚀 DÉMARRAGE RAPIDE - PSE V3
+
+## ✅ VÉRIFICATION DU FICHIER
+
+Le fichier `devoirs-pse-aepe-revisions.html` a été vérifié et renommé en `index.html`.
+
+### Caractéristiques confirmées
+
+- ✅ **1079 lignes** de code propre et structuré
+- ✅ **26 questions** professionnalisantes
+- ✅ **5 thématiques** : SST, Hygiène, Incendie, TMS, Cadre pro
+- ✅ **Email** : benoit.deflandre@ac-nice.fr (configuré)
+- ✅ **Design moderne** avec mode sombre/clair
+- ✅ **Responsive** : mobile, tablette, desktop
+- ✅ **Illustrations SVG** intégrées (légères)
+- ✅ **Aucune dépendance** externe
+- ✅ **100% fonctionnel** et prêt pour déploiement
+
+---
+
+## 📦 FICHIERS PRÊTS POUR GITHUB
+
+Vous avez **4 fichiers** à uploader :
+
+1. **index.html** ⭐ (fichier principal - 65 Ko)
+2. **README.md** (documentation complète)
+3. **DEPLOIEMENT.md** (guide technique)
+4. **VERSION.md** (notes de version)
+5. **.gitignore** (configuration Git)
+
+---
+
+## 🎯 DÉPLOIEMENT EN 3 MINUTES
+
+### Étape 1 : Créer le dépôt
+- Aller sur : https://github.com/new
+- Nom : `devoir-pse-aepe-v3`
+- Public ✅
+- Ne rien cocher
+- **Create repository**
+
+### Étape 2 : Uploader
+- Cliquer "uploading an existing file"
+- Glisser-déposer les 5 fichiers
+- Commit : `Initial commit - PSE V3 Professionnel`
+- **Commit changes**
+
+### Étape 3 : Activer Pages
+- Settings > Pages
+- Source : **Deploy from a branch**
+- Branch : **main** / **/ (root)**
+- **Save**
+
+### Résultat
+Votre site sera disponible à :
+```
+https://[username].github.io/devoir-pse-v3/
+```
+
+---
+
+## 🆚 DIFFÉRENCES V3 vs V4
+
+Vous avez maintenant **2 versions** :
+
+### Version 3 - Professionnel (ce fichier)
+- **26 questions** approfondies
+- **Approche analytique** : Observer → Analyser → Agir
+- **Illustrations SVG** pédagogiques
+- **Situations contextualisées**
+- → **Idéal pour** : formation initiale, évaluation de la démarche PSE
+
+### Version 4 - RATTRAPAGE (déjà préparée)
+- **40 questions** de révision
+- **Focus urgences** : premiers secours, protocoles
+- **Design épuré**
+- **Situations d'urgence**
+- → **Idéal pour** : rattrapage, révisions, préparation examen
+
+**Conseil** : Déployez les 2 versions avec des URLs différentes !
+
+---
+
+## 📋 POINTS CLÉS DU DEVOIR V3
+
+### Pédagogie
+- Démarche PSE en 3 temps
+- Vocabulaire professionnel valorisé
+- Exemples de réponses dans les consignes
+- Feedback adapté selon mode
+
+### Thématiques (26 questions)
+- 🛡️ Gestes & Secours (SST)
+- 🧼 Hygiène / Infectieux
+- 🔥 Incendie & PPMS
+- 💪 TMS / Ergonomie
+- 📋 Cadre professionnel
+
+### Modes
+- **Devoir** : feedback synthétique (simulation examen)
+- **Entraînement** : feedback détaillé (apprentissage)
+
+---
+
+## 🎓 USAGE RECOMMANDÉ
+
+### Pour les formateurs
+1. Présenter la démarche PSE avant le devoir
+2. Faire lire attentivement les consignes
+3. Laisser 90-120 minutes en mode Devoir
+4. Débriefing collectif après correction
+
+### Pour les stagiaires
+1. Lire les consignes + exemple de réponse
+2. Remplir le cartouche et verrouiller
+3. Répondre aux 26 questions
+4. Envoyer les résultats au formateur
+5. Analyser les axes d'amélioration
+
+---
+
+## ✉️ CONFIGURATION EMAIL
+
+L'email formateur est déjà configuré :
+```
+benoit.deflandre@ac-nice.fr
+```
+
+Pour changer :
+- Ouvrir `index.html`
+- Ligne 281
+- Remplacer l'adresse email
+
+---
+
+## 📱 TEST AVANT DÉPLOIEMENT
+
+Vous pouvez tester localement :
+1. Double-cliquer sur `index.html`
+2. S'ouvre dans le navigateur
+3. Tester toutes les fonctionnalités
+4. Vérifier sur mobile (mode responsive)
+
+---
+
+## 🔗 LIENS UTILES
+
+**Documentation GitHub Pages** : https://docs.github.com/pages  
+**Support** : benoit.deflandre@ac-nice.fr  
+
+---
+
+## ✅ CHECKLIST FINALE
+
+Avant de partager aux stagiaires :
+
+- [ ] Site accessible et fonctionnel
+- [ ] Toutes les questions s'affichent
+- [ ] Correction fonctionne
+- [ ] Email se génère correctement
+- [ ] Responsive OK (tester sur mobile)
+- [ ] Consignes claires et complètes
+
+---
+
+**Version** : V3 Professionnel  
+**Statut** : ✅ Prêt pour déploiement  
+**Email** : benoit.deflandre@ac-nice.fr
